@@ -32,14 +32,21 @@ public class DepartmentService {
 
 
             public int create(Department department) {
-
+                List<ConstraintViolation> violations = new Validator().validate(department);
+                if (!violations.isEmpty()) {
+                    throw new DepartmentException(violations);
+                }
                 return departmentRepository.create(department);
             }
 
 
-            public void update(Department department) {
-               departmentRepository.update(department);
-            }
+                public void update(Department department) {
+                    List<ConstraintViolation> violations = new Validator().validate(department);
+                    if (!violations.isEmpty()) {
+                        throw new DepartmentException(violations);
+                    }
+                    departmentRepository.update(department);
+                }
 
             public void delete(int id) {
                 Department department = getById(id);

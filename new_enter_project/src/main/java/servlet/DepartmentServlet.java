@@ -33,18 +33,18 @@ public class DepartmentServlet extends HttpServlet {
             Department dep = departmentService.getById(Integer.parseInt(id));
             if ("edit".equals(action)) {
                 req.setAttribute("department", dep);
-                getServletContext().getRequestDispatcher("/view/depEdit.jsp").forward(req, resp);
+                getServletContext().getRequestDispatcher("/view/department/depEdit.jsp").forward(req, resp);
             } else if ("delete".equals(action)) {
                 req.setAttribute("department", dep);
-                getServletContext().getRequestDispatcher("/view/depDelete.jsp").forward(req, resp);
+                getServletContext().getRequestDispatcher("/view/department/depDelete.jsp").forward(req, resp);
             }
         }else if (StringUtils.isNotBlank(id)&& "create".equals(action))
-        { getServletContext().getRequestDispatcher("/view/depAdd.jsp?id=" + id).forward(req, resp);
+        { getServletContext().getRequestDispatcher("/view/department/depAdd.jsp?id=" + id).forward(req, resp);
 
         } else {
             ArrayList<Department> departments = departmentService.getAll();
             req.setAttribute("department", departments);
-            getServletContext().getRequestDispatcher("/view/department.jsp").forward(req, resp);
+            getServletContext().getRequestDispatcher("/view/department/department.jsp").forward(req, resp);
         }
 
     }
@@ -77,7 +77,7 @@ public class DepartmentServlet extends HttpServlet {
                 req.setAttribute("department", department);
                 req.setAttribute("error", error.violations);
                 req.setAttribute("errorMsg", error.getMessage());
-                getServletContext().getRequestDispatcher("/views/depAdd.jsp?id=" + id).forward(req, resp);
+                getServletContext().getRequestDispatcher("/views/department/depAdd.jsp?id=" + id).forward(req, resp);
             }
         }
 
@@ -100,7 +100,7 @@ public class DepartmentServlet extends HttpServlet {
             req.setAttribute("department", department);
             req.setAttribute("error", error.violations);
             req.setAttribute("errorMsg", error.getMessage());
-            getServletContext().getRequestDispatcher("/view/depEdit.jsp").forward(req, resp);
+            getServletContext().getRequestDispatcher("/view/department/depEdit.jsp").forward(req, resp);
         }
     }
 
